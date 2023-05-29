@@ -1,0 +1,22 @@
+{
+  "appDesc": {
+    "message": "The ultimate tool for tracking time of your coding sessions. Show the world how dedicated you are to your projects!"
+  },
+  "Homepage": {
+    "message": "Testaustime homepage"
+  },
+  "StatusOff": {
+    "message": "Testaustime is off"
+  },
+  "StatusOn": {
+    "message": "Testaustime is on"
+  },
+  "ToggleLabel": {
+    "message": "Test appearance on/off"
+  },
+  "AuthCodeLabel": {
+    "message": "Authentication token"
+  },
+  "ProjectNameLabel": {
+    "message": "Name of project"
+  }
