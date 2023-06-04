@@ -1,15 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Ubuntu&family=Poppins:wght@600;800&display=swap');
 
 :root {
-    --background: #eee;
-    --text: #333;
-    --dc-background: #e2e7f7;
-    --dc: #7289DA;
-    --border: #ccc;
-    --title: #111;
-    --background-filter: contrast(0.2) brightness(1.7) saturate(1.7) grayscale(0.3);
-    --icon-filter: none;
-    --project-card-border: #000;
+  --background: #eee;
+  --text: #333;
+  --dc-background: #e2e7f7;
+  --dc: #7289da;
+  --border: #ccc;
+  --title: #111;
+  --background-filter: contrast(0.2) brightness(1.7) saturate(1.7) grayscale(0.3);
+  --icon-filter: none;
+  --project-card-border: #000;
 }
 
 body {
@@ -29,29 +29,29 @@ body {
 }
 
 #statusimg {
-  background-image: url("assets/time-off.png");
+  background-image: url('assets/time-off.png');
   background-repeat: no-repeat;
   background-position: center center;
-  background-size: 60px 50px; 
-  min-height: 60px; 
+  background-size: 60px 50px;
+  min-height: 60px;
 }
 
 #statusimg.on {
-  background-image: url("assets/time-on.png");
+  background-image: url('assets/time-on.png');
 }
 
 h1 {
-    font-family: "Poppins",sans-serif;
-    font-weight: 800;
-    font-size: 2rem;
-    background: #3c709d;
-    background: linear-gradient(51deg,#3c709d,#22416c);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    display: inline-block;
-    padding: 0;
-    -webkit-flex: 1 1;
-    margin: 0 0 0rem;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 800;
+  font-size: 2rem;
+  background: #3c709d;
+  background: linear-gradient(51deg, #3c709d, #22416c);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+  padding: 0;
+  -webkit-flex: 1 1;
+  margin: 0 0 0rem;
 }
 
 /*p, ul {
@@ -61,7 +61,6 @@ h1 {
     line-height: 1;
     margin-bottom: 0rem;
 } */
-
 
 .b {
   border-top: 1px solid gainsboro;
@@ -79,18 +78,30 @@ h1 {
   color: firebrick;
 }
 
-
-/* Snowflake Status (yes this is snowflake ripoff) */ 
+/* Snowflake Status (yes this is snowflake ripoff) */
 
 .transfering {
-  -webkit-animation:spin 8s linear infinite;
-  -moz-animation:spin 8s linear infinite;
-  animation:spin 8s linear infinite;
+  -webkit-animation: spin 8s linear infinite;
+  -moz-animation: spin 8s linear infinite;
+  animation: spin 8s linear infinite;
   fill: #22416c;
 }
-@-moz-keyframes spin { 100% { -moz-transform: rotate(360deg); } }
-@-webkit-keyframes spin { 100% { -webkit-transform: rotate(360deg); } }
-@keyframes spin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }
+@-moz-keyframes spin {
+  100% {
+    -moz-transform: rotate(360deg);
+  }
+}
+@-webkit-keyframes spin {
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}
+@keyframes spin {
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
 
 /* Toggle */
 
@@ -116,21 +127,21 @@ h1 {
   right: 0;
   bottom: 0;
   background-color: #ccc;
-  -webkit-transition: .4s;
-  transition: .4s;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
   border-radius: 17px;
 }
 
 .slider:before {
   position: absolute;
-  content: "";
+  content: '';
   height: 13px;
   width: 13px;
   left: 2px;
   bottom: 2px;
   background-color: white;
-  -webkit-transition: .4s;
-  transition: .4s;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
   border-radius: 50%;
 }
 
@@ -160,13 +171,13 @@ input:checked + .slider:before {
     background-color: #38383d;
   }
   #statusimg {
-    background-image: url("assets/status-off-dark.svg");
+    background-image: url('assets/status-off-dark.svg');
   }
   #statusimg.on {
-    background-image: url("assets/status-on-dark.svg");
+    background-image: url('assets/status-on-dark.svg');
   }
   #statusimg.on.running {
-    background-image: url("assets/status-running.svg");
+    background-image: url('assets/status-running.svg');
   }
   input:checked + .slider {
     background-color: #3c709d;
@@ -176,16 +187,14 @@ input:checked + .slider:before {
   }
 }
 
-[data-theme="dark"] {
-    --background: #121212;
-    --text: #bbb;
-    --dc-background: #161b2b;
-    --dc: #445282;
-    --border: #222;
-    --title: #ddd;
-    --background-filter: contrast(0.5) brightness(0.35) saturate(1.7) grayscale(0.2) opacity(1);
-    --icon-filter: invert(1);
-    --project-card-border: #fff;
+[data-theme='dark'] {
+  --background: #121212;
+  --text: #bbb;
+  --dc-background: #161b2b;
+  --dc: #445282;
+  --border: #222;
+  --title: #ddd;
+  --background-filter: contrast(0.5) brightness(0.35) saturate(1.7) grayscale(0.2) opacity(1);
+  --icon-filter: invert(1);
+  --project-card-border: #fff;
 }
-
-

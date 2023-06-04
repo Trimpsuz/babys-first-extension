@@ -12,7 +12,7 @@
     "message": "Testaustime on päällä"
   },
   "ToggleLabel": {
-    "message": "Miltä näyttää päällä/pois"
+    "message": "Laita Testaustime päälle/pois"
   },
   "AuthCodeLabel": {
     "message": "Tunnistautumistunnus"
