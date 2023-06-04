@@ -8,6 +8,7 @@
   "icons": {
     "48": "assets/toolbar-on.png"
   },
+  "permissions": ["storage"],
   "browser_action": {
     "default_icon": {
       "48": "assets/toolbar-on.png"
@@ -19,6 +20,11 @@
     "gecko": {
       "id": "testaaja@testaustime.fi"
     }
-  }
+  },
+  "content_scripts": [
+    {
+      "matches": ["*://docs.google.com/spreadsheets/*"],
+      "js": ["sheets.js"]
+    }
+  ]
 }
-

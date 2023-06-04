@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
   <head>
     <meta charset="utf-8" />
@@ -7,20 +7,20 @@
     <link rel="stylesheet" href="time.css" />
   </head>
   <body>
-    <h1>Testaustime</h1><p>
+    <h1>Testaustime</h1>
+    <p></p>
     <div id="active">
       <div id="statusimg"></div>
-      <p id="status-text" data-i18n="StatusOff"> </p>
+      <p id="status-text" data-i18n="StatusOff"></p>
     </div>
-    <form>
-      <label for="auth-code" id="auth-code-label" data-i18n="AuthCodeLabel">Auth</label><p>
-      <input type="text" id="auth-code" name="auth-code">
-      <input type="submit" value="->">
+    <form id="time-form">
+      <label for="auth-code" id="auth-code-label" data-i18n="AuthCodeLabel">Auth</label>
       <p>
-      <label for="project-name" id="project-name-label" data-i18n="ProjectNameLabel">Project</label><p>
-      <input type="text" id="project-name" name="project-name">
-      <input type="submit" value="->">
+        <input type="text" id="auth-code" name="auth-code" />
+        <input type="submit" value="->" />
+      </p>
     </form>
+
     <div id="enabled-wrapper" class="b button">
       <label id="toggle-label" for="enabled" data-i18n="ToggleLabel"></label>
       <label class="switch">
@@ -32,7 +32,7 @@
       <a target="_blank" id="Homepage" data-i18n="Homepage" href="https://testaustime.fi">testaustime.fi</a>
     </div>
     <p>
-    <script src="time.js"></script>
+      <script src="time.js"></script>
+    </p>
   </body>
 </html>
-
