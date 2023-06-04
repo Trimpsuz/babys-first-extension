@@ -1,7 +1,6 @@
 //tämä osa hoitaa tekstien käännökset
 document.addEventListener('DOMContentLoaded', function () {
   var AuthCodeLabel = browser.i18n.getMessage('AuthCodeLabel');
-  var ProjectNameLabel = browser.i18n.getMessage('ProjectNameLabel');
   var Homepage = browser.i18n.getMessage('Homepage');
   var ToggleLabel = browser.i18n.getMessage('ToggleLabel');
 
@@ -10,9 +9,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
   var AuthCodeLabelElement = document.getElementById('auth-code-label');
   AuthCodeLabelElement.textContent = AuthCodeLabel;
-
-  var ProjectNameLabelElement = document.getElementById('project-name-label');
-  ProjectNameLabelElement.textContent = ProjectNameLabel;
 
   var HomepageElement = document.getElementById('Homepage');
   HomepageElement.textContent = Homepage;
@@ -23,7 +19,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     var authCode = document.getElementById('auth-code').value;
 
-    browser.storage.local.set({ authCode }).then(() => {
+    browser.storage.local.set({ authCode: authCode }).then(() => {
       console.log('Authcode set in local storage.');
     });
 
