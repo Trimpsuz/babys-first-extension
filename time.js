@@ -33,10 +33,27 @@ var statusImage = document.getElementById('statusimg');
 
 var enabledCheckbox = document.getElementById('enabled');
 
-//Set on by default
-statusText.textContent = StatusOn;
-statusImage.style.backgroundImage = 'url("assets/time-on.png")';
-browser.browserAction.setIcon({ path: 'assets/toolbar-on.png' });
+//Load toggle state
+browser.storage.local.get('extensionStatus').then((result) => {
+  if (Object.entries(result).length === 0) {
+    //Set on on first use
+    statusText.textContent = StatusOn;
+    statusImage.style.backgroundImage = 'url("assets/time-on.png")';
+    browser.browserAction.setIcon({ path: 'assets/toolbar-on.png' });
+    enabledCheckbox.checked = true;
+    browser.storage.local.set({ extensionStatus: true });
+  } else if (result.extensionStatus) {
+    statusText.textContent = StatusOn;
+    statusImage.style.backgroundImage = 'url("assets/time-on.png")';
+    browser.browserAction.setIcon({ path: 'assets/toolbar-on.png' });
+    enabledCheckbox.checked = true;
+  } else if (!result.extensionStatus) {
+    statusText.textContent = StatusOff;
+    statusImage.style.backgroundImage = 'url("assets/time-off.png")';
+    browser.browserAction.setIcon({ path: 'assets/toolbar-off.png' });
+    enabledCheckbox.checked = false;
+  }
+});
 
 //tää osa vaihtaa kuvia ja tekstejä on/off
 enabledCheckbox.addEventListener('change', function () {
@@ -44,12 +61,13 @@ enabledCheckbox.addEventListener('change', function () {
     statusText.textContent = StatusOn;
     statusImage.style.backgroundImage = 'url("assets/time-on.png")';
     browser.browserAction.setIcon({ path: 'assets/toolbar-on.png' });
+    //Save toggle state
+    browser.storage.local.set({ extensionStatus: true });
   } else {
     statusText.textContent = StatusOff;
     statusImage.style.backgroundImage = 'url("assets/time-off.png")';
     browser.browserAction.setIcon({ path: 'assets/toolbar-off.png' });
+    //Save toggle state
+    browser.storage.local.set({ extensionStatus: false });
   }
 });
-
-// Initialize the toggle state
-enabledCheckbox.checked = true;
