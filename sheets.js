@@ -27,3 +27,16 @@ setInterval(() => {
     }
   }
 }, 30_000);
+
+//Flush when closing window
+window.onbeforeunload = () => {
+  browser.storage.local.get('authCode').then((item) => {
+    const authCode = item.authCode;
+    fetch('https://api.testaustime.fi/activity/flush', '', {
+      Headers: {
+        Authorization: `Bearer ${authCode}`,
+      },
+    });
+  });
+  console.log('Flushed');
+};
