@@ -1,3 +1,22 @@
+function formatTime(seconds) {
+  const hours = Math.floor(seconds / 3600);
+  const minutes = Math.floor((seconds % 3600) / 60);
+  const remainingSeconds = seconds % 60;
+
+  let formattedTime = '';
+  if (hours > 0) {
+    formattedTime += `${hours}h `;
+  }
+  if (minutes > 0) {
+    formattedTime += `${minutes}m `;
+  }
+  if (remainingSeconds > 0) {
+    formattedTime += `${remainingSeconds}s`;
+  }
+
+  return formattedTime.trim();
+}
+
 //tämä osa hoitaa tekstien käännökset
 var AuthCodeLabel = browser.i18n.getMessage('AuthCodeLabel');
 var Homepage = browser.i18n.getMessage('Homepage');
@@ -18,6 +37,8 @@ ProgrammedTodayElement.textContent = ProgrammedToday;
 
 const authCodeInput = document.getElementById('auth-code');
 
+var authCode = null;
+
 //Hide and unhide authcode on focus change
 authCodeInput.addEventListener('focus', function () {
   this.type = 'text';
@@ -30,13 +51,35 @@ authCodeInput.addEventListener('blur', function () {
 //Set text of authcode field to authcode stored
 browser.storage.local.get('authCode').then((result) => {
   authCodeInput.value = result.authCode;
+  authCode = result.authCode;
+
+  //Set current programming time
+  const start = new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate()).getTime() / 1000 - new Date().getTimezoneOffset() * 60;
+
+  fetch(`https://api.testaustime.fi/users/@me/activity/data?from=${start}`, {
+    headers: {
+      Authorization: `Bearer ${authCode}`,
+    },
+  })
+    .then((response) => {
+      return response.json();
+    })
+    .then((data) => {
+      console.log(data);
+      if (data.length > 0) {
+        const totalSeconds = data.reduce((acc, cur) => acc + cur.duration, 0);
+        ProgrammedTodayElement.textContent = ProgrammedToday.replace('0s', formatTime(totalSeconds));
+      } else {
+        ProgrammedTodayElement.textContent = ProgrammedToday;
+      }
+    });
 });
 
 var form = document.getElementById('time-form');
 form.addEventListener('submit', function (event) {
   event.preventDefault();
 
-  var authCode = authCodeInput.value;
+  authCode = authCodeInput.value;
 
   browser.storage.local.set({ authCode: authCode }).then(() => {
     console.log('Authcode set in local storage.');
