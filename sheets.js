@@ -12,7 +12,7 @@ browser.storage.local.get('extensionStatus').then((item) => {
           editorText = document.getElementById('waffle-rich-text-editor').children[0].textContent;
 
           const data = {
-            projectName,
+            project_name: projectName,
             language: 'Google Sheets',
             editor_name: 'browser',
             hostname: 'browser',
