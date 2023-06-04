@@ -25,6 +25,10 @@
     {
       "matches": ["*://docs.google.com/spreadsheets/*"],
       "js": ["sheets.js"]
+    },
+    {
+      "matches": ["*://scratch.mit.edu/projects/*/editor/*"],
+      "js": ["scratch.js"]
     }
   ]
 }
