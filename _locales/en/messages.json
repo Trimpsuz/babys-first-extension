@@ -12,7 +12,7 @@
     "message": "Testaustime is on"
   },
   "ToggleLabel": {
-    "message": "Test appearance on/off"
+    "message": "See how it looks on/off"
   },
   "AuthCodeLabel": {
     "message": "Authentication token"
@@ -20,3 +20,4 @@
   "ProjectNameLabel": {
     "message": "Name of project"
   }
+}

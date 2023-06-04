@@ -1,3 +1,4 @@
+//tämä osa hoitaa tekstien käännökset
 document.addEventListener('DOMContentLoaded', function() {
   var AuthCodeLabel = browser.i18n.getMessage("AuthCodeLabel");
   var ProjectNameLabel = browser.i18n.getMessage("ProjectNameLabel");
@@ -16,19 +17,21 @@ document.addEventListener('DOMContentLoaded', function() {
   var HomepageElement = document.getElementById('Homepage');
   HomepageElement.textContent = Homepage;
 
-  var form = document.getElementById('time-form');
+  var form = document.getElementById('time-form'); //ei aavistustakaan mikä tää 'time-form' on ja miksi tää toimii, en uskalla koskea ettei kaikki hajoa
   form.addEventListener('submit', function(event) {
     event.preventDefault();
 
     var authCode = document.getElementById('auth-code').value;
     var projectName = document.getElementById('project-name').value;
 
-    console.log('Auth Code:', authCode);
+    console.log('Auth Code:', authCode);  //nää on varmaan jotain debuggaus jäänteitä, voinee poistaa jos ei tarvi emt
     console.log('Project Name:', projectName);
 
     form.reset();
   });
 });
+
+//tää osa vaihtaa kuvia ja tekstejä on/off
 document.addEventListener('DOMContentLoaded', function() {
   var StatusOff = browser.i18n.getMessage("StatusOff");
   var StatusOn = browser.i18n.getMessage("StatusOn");
