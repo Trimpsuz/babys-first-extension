@@ -65,7 +65,6 @@ browser.storage.local.get('authCode').then((result) => {
       return response.json();
     })
     .then((data) => {
-      console.log(data);
       if (data.length > 0) {
         const totalSeconds = data.reduce((acc, cur) => acc + cur.duration, 0);
         ProgrammedTodayElement.textContent = ProgrammedToday.replace('0s', formatTime(totalSeconds));
