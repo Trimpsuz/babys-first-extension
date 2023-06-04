@@ -19,5 +19,8 @@
   },
   "ProjectNameLabel": {
     "message": "Projektin nimi"
+  },
+  "ProgrammedToday": {
+    "message": "Olet koodannut 0s tänään"
   }
 }

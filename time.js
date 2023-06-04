@@ -2,6 +2,7 @@
 var AuthCodeLabel = browser.i18n.getMessage('AuthCodeLabel');
 var Homepage = browser.i18n.getMessage('Homepage');
 var ToggleLabel = browser.i18n.getMessage('ToggleLabel');
+var ProgrammedToday = browser.i18n.getMessage('ProgrammedToday');
 
 var ToggleLabelElement = document.getElementById('toggle-label');
 ToggleLabelElement.textContent = ToggleLabel;
@@ -12,17 +13,34 @@ AuthCodeLabelElement.textContent = AuthCodeLabel;
 var HomepageElement = document.getElementById('Homepage');
 HomepageElement.textContent = Homepage;
 
-var form = document.getElementById('time-form'); //ei aavistustakaan mikä tää 'time-form' on ja miksi tää toimii, en uskalla koskea ettei kaikki hajoa
+var ProgrammedTodayElement = document.getElementById('ProgrammedToday');
+ProgrammedTodayElement.textContent = ProgrammedToday;
+
+const authCodeInput = document.getElementById('auth-code');
+
+//Hide and unhide authcode on focus change
+authCodeInput.addEventListener('focus', function () {
+  this.type = 'text';
+});
+
+authCodeInput.addEventListener('blur', function () {
+  this.type = 'password';
+});
+
+//Set text of authcode field to authcode stored
+browser.storage.local.get('authCode').then((result) => {
+  authCodeInput.value = result.authCode;
+});
+
+var form = document.getElementById('time-form');
 form.addEventListener('submit', function (event) {
   event.preventDefault();
 
-  var authCode = document.getElementById('auth-code').value;
+  var authCode = authCodeInput.value;
 
   browser.storage.local.set({ authCode: authCode }).then(() => {
     console.log('Authcode set in local storage.');
   });
-
-  form.reset();
 });
 
 var StatusOff = browser.i18n.getMessage('StatusOff');

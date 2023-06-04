@@ -19,5 +19,8 @@
   },
   "ProjectNameLabel": {
     "message": "Name of project"
+  },
+  "ProgrammedToday": {
+    "message": "You have coded 0s today"
   }
 }
