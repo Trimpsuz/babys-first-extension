@@ -17,14 +17,12 @@ function waitForElement(selector, callback) {
 }
 
 //Get project name
-waitForElement('[data-cy="header-repl-title"]', (element) => {
-  const projectName = element.textContent;
-
+waitForElement('[data-cy="header-repl-title"]', () => {
   function heartbeat(language) {
     browser.storage.local.get('authCode').then((item) => {
       const authCode = item.authCode;
       const data = {
-        project_name: projectName,
+        project_name: document.querySelector('[data-cy="header-repl-title"]').textContent,
         language,
         editor_name: 'Replit',
         hostname: 'browser',
