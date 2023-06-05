@@ -1,5 +1,6 @@
-const editor = document.getElementsByClassName('blocklyBlockCanvas')[0];
 const projectName = document.title.replace(' on Scratch', '');
+
+let editorContent;
 
 function heartbeat() {
   browser.storage.local.get('authCode').then((item) => {
@@ -30,6 +31,14 @@ function heartbeat() {
 function handleFirstAction() {
   document.removeEventListener('click', handleFirstAction);
   heartbeat();
+
+  //Send heartbeat every 30 seconds after first action
+  setInterval(() => {
+    if (!document.hidden && document.getElementsByClassName('blocklyBlockCanvas')[0].childNodes != editorContent) {
+      editorContent = document.getElementsByClassName('blocklyBlockCanvas')[0].childNodes;
+      heartbeat();
+    }
+  }, 30_000);
 }
 
 //Check if extension is enabled
