@@ -16,6 +16,37 @@ function waitForElement(selector, callback) {
   }
 }
 
+function heartbeat(language) {
+  browser.storage.local.get('authCode').then((item) => {
+    const authCode = item.authCode;
+    const data = {
+      project_name: projectName,
+      language,
+      editor_name: 'Replit',
+      hostname: 'browser',
+    };
+    fetch('https://api.testaustime.fi/activity/update', {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${authCode}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    })
+      .then(() => {
+        console.log('Heartbeat');
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  });
+}
+
+function handleFirstAction(language) {
+  document.removeEventListener('click', handleFirstAction);
+  heartbeat(language);
+}
+
 //Get project name
 waitForElement('[data-cy="header-repl-title"]', (element) => {
   const projectName = element.textContent;
@@ -56,4 +87,12 @@ waitForElement('.node.active', (element) => {
   const observer = new MutationObserver(handleMutations);
 
   observer.observe(fileList, { childList: true, subtree: true, attributes: true });
+
+  //Check if extension is enabled
+  browser.storage.local.get('extensionStatus').then((item) => {
+    if (Object.entries(item).length === 0 || item.extensionStatus) {
+      //Send heartbeat on first action
+      document.addEventListener('click', handleFirstAction(currentLanguage));
+    }
+  });
 });
