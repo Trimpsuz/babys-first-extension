@@ -26,3 +26,16 @@ function heartbeat() {
       });
   });
 }
+
+function handleFirstAction() {
+  document.removeEventListener('click', handleFirstAction);
+  heartbeat();
+}
+
+//Check if extension is enabled
+browser.storage.local.get('extensionStatus').then((item) => {
+  if (Object.entries(item).length === 0 || item.extensionStatus) {
+    //Send heartbeat on first action
+    document.addEventListener('click', handleFirstAction);
+  }
+});
