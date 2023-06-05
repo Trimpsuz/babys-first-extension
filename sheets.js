@@ -11,12 +11,20 @@ function heartbeat() {
       editor_name: 'browser',
       hostname: 'browser',
     };
-    fetch('https://api.testaustime.fi/activity/update', data, {
-      Headers: {
+    fetch('https://api.testaustime.fi/activity/update', {
+      method: 'POST',
+      headers: {
         Authorization: `Bearer ${authCode}`,
+        'Content-Type': 'application/json',
       },
-    });
-    console.log('Heartbeat');
+      body: JSON.stringify(data),
+    })
+      .then(() => {
+        console.log('Heartbeat');
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   });
 }
 
@@ -46,13 +54,19 @@ browser.storage.local.get('extensionStatus').then((item) => {
     window.onbeforeunload = () => {
       browser.storage.local.get('authCode').then((item) => {
         const authCode = item.authCode;
-        fetch('https://api.testaustime.fi/activity/flush', '', {
-          Headers: {
+        fetch('https://api.testaustime.fi/activity/flush', {
+          method: 'POST',
+          headers: {
             Authorization: `Bearer ${authCode}`,
           },
-        });
+        })
+          .then(() => {
+            console.log('Flushed');
+          })
+          .catch((error) => {
+            console.error(error);
+          });
       });
-      console.log('Flushed');
     };
   }
 });
