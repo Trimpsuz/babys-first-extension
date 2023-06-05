@@ -29,6 +29,10 @@
     {
       "matches": ["*://scratch.mit.edu/projects/*/editor"],
       "js": ["scratch.js"]
+    },
+    {
+      "matches": ["*://replit.com/*/*"],
+      "js": ["replit.js"]
     }
   ]
 }
