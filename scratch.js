@@ -8,7 +8,7 @@ function heartbeat() {
     const data = {
       project_name: projectName,
       language: 'Scratch',
-      editor_name: 'browser',
+      editor_name: 'Scratch',
       hostname: 'browser',
     };
     fetch('https://api.testaustime.fi/activity/update', {

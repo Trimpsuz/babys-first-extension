@@ -8,7 +8,7 @@ function heartbeat() {
     const data = {
       project_name: projectName,
       language: 'Google Sheets',
-      editor_name: 'browser',
+      editor_name: 'Google Sheets',
       hostname: 'browser',
     };
     fetch('https://api.testaustime.fi/activity/update', {
