@@ -1,12 +1,10 @@
-const projectName = document.title.replace(' - Google Sheets', '');
-
 let editorText = '';
 
 function heartbeat() {
   browser.storage.local.get('authCode').then((item) => {
     const authCode = item.authCode;
     const data = {
-      project_name: projectName,
+      project_name: document.title.replace(' - Google Sheets', ''),
       language: 'Google Sheets',
       editor_name: 'Google Sheets',
       hostname: 'browser',

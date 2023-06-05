@@ -1,12 +1,10 @@
-const projectName = document.title.replace(' on Scratch', '');
-
 let editorContent;
 
 function heartbeat() {
   browser.storage.local.get('authCode').then((item) => {
     const authCode = item.authCode;
     const data = {
-      project_name: projectName,
+      project_name: document.title.replace(' on Scratch', ''),
       language: 'Scratch',
       editor_name: 'Scratch',
       hostname: 'browser',
