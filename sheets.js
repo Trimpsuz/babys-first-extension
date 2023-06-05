@@ -34,12 +34,10 @@ function handleFirstAction() {
 
   //Send heartbeat every 30 seconds after first action
   setInterval(() => {
-    if (document.getElementById('waffle-rich-text-editor').children[0]) {
-      if (!document.hidden && editorText != document.getElementById('waffle-rich-text-editor').children[0].textContent) {
-        editorText = document.getElementById('waffle-rich-text-editor').children[0].textContent;
+    if (!document.hidden && editorText != document.getElementById('waffle-rich-text-editor').children[0].textContent) {
+      editorText = document.getElementById('waffle-rich-text-editor').children[0].textContent;
 
-        heartbeat();
-      }
+      heartbeat();
     }
   }, 30_000);
 }
