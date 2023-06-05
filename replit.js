@@ -83,16 +83,16 @@ waitForElement('[data-cy="header-repl-title"]', (element) => {
 
     observer.observe(fileList, { childList: true, subtree: true, attributes: true });
 
-    function handleFirstAction(language) {
+    function handleFirstAction() {
       document.removeEventListener('click', handleFirstAction);
-      heartbeat(language);
+      heartbeat(currentLanguage);
 
       //Send heartbeat every 30 seconds after first action
       setInterval(() => {
         if (!document.hidden && currentEditor.textContent != currentEditorContent) {
           currentEditorContent = currentEditor.textContent;
 
-          heartbeat();
+          heartbeat(currentLanguage);
         }
       }, 30_000);
     }
@@ -101,7 +101,7 @@ waitForElement('[data-cy="header-repl-title"]', (element) => {
     browser.storage.local.get('extensionStatus').then((item) => {
       if (Object.entries(item).length === 0 || item.extensionStatus) {
         //Send heartbeat on first action
-        document.addEventListener('click', handleFirstAction(currentLanguage));
+        document.addEventListener('click', handleFirstAction);
 
         //Flush when closing window
         window.onbeforeunload = () => {
