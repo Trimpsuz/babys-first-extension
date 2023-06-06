@@ -23,7 +23,7 @@
   },
   "content_scripts": [
     {
-      "matches": ["*://docs.google.com/spreadsheets/*"],
+      "matches": ["*://docs.google.com/spreadsheets/d/*"],
       "js": ["sheets.js"]
     },
     {
