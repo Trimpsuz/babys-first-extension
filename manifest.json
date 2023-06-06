@@ -27,7 +27,7 @@
       "js": ["sheets.js"]
     },
     {
-      "matches": ["*://scratch.mit.edu/projects/*/editor"],
+      "matches": ["*://scratch.mit.edu/projects/*/editor*"],
       "js": ["scratch.js"]
     },
     {
