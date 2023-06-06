@@ -1,4 +1,5 @@
 let editorContent;
+let hasMouseMoved = false;
 
 function heartbeat() {
   browser.storage.local.get('authCode').then((item) => {
@@ -30,9 +31,15 @@ function handleFirstAction() {
   document.removeEventListener('click', handleFirstAction);
   heartbeat();
 
+  //Check if mouse moves
+  document.addEventListener('mousemove', () => {
+    hasMouseMoved = true;
+  });
+
   //Send heartbeat every 30 seconds after first action
   setInterval(() => {
-    if (!document.hidden && document.getElementsByClassName('blocklyBlockCanvas')[0].childNodes != editorContent) {
+    if (!document.hidden && (document.getElementsByClassName('blocklyBlockCanvas')[0].childNodes != editorContent || hasMouseMoved)) {
+      hasMouseMoved = false;
       editorContent = document.getElementsByClassName('blocklyBlockCanvas')[0].childNodes;
       heartbeat();
     }

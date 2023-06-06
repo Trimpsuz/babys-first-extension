@@ -1,4 +1,5 @@
 let editorText = '';
+let hasMouseMoved = false;
 
 function heartbeat() {
   browser.storage.local.get('authCode').then((item) => {
@@ -30,9 +31,14 @@ function handleFirstAction() {
   document.removeEventListener('click', handleFirstAction);
   heartbeat();
 
+  //Check if mouse moves
+  document.addEventListener('mousemove', () => {
+    hasMouseMoved = true;
+  });
+
   //Send heartbeat every 30 seconds after first action
   setInterval(() => {
-    if (!document.hidden && editorText != document.getElementById('waffle-rich-text-editor').textContent) {
+    if (!document.hidden && (editorText != document.getElementById('waffle-rich-text-editor').textContent || hasMouseMoved)) {
       editorText = document.getElementById('waffle-rich-text-editor').textContent;
 
       heartbeat();

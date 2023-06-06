@@ -50,6 +50,7 @@ waitForElement('[data-cy="header-repl-title"]', () => {
     let currentFile = document.querySelector('.node.active');
     let currentEditor = null;
     let currentEditorContent = '';
+    let hasMouseMoved = false;
     document.querySelector(`[data-cy="workspace-cm-editor-${currentFile.textContent}"]`).childNodes[0].childNodes[0].childNodes.forEach((node) => {
       if (node.classList.contains('cm-scroller')) {
         node.childNodes.forEach((node) => {
@@ -85,9 +86,14 @@ waitForElement('[data-cy="header-repl-title"]', () => {
       document.removeEventListener('click', handleFirstAction);
       heartbeat(currentLanguage);
 
+      //Check if mouse moves
+      document.addEventListener('mousemove', () => {
+        hasMouseMoved = true;
+      });
+
       //Send heartbeat every 30 seconds after first action
       setInterval(() => {
-        if (!document.hidden && currentEditor.textContent != currentEditorContent) {
+        if (!document.hidden && (currentEditor.textContent != currentEditorContent || hasMouseMoved)) {
           currentEditorContent = currentEditor.textContent;
 
           heartbeat(currentLanguage);
