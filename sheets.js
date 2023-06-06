@@ -5,7 +5,7 @@ function heartbeat() {
     const authCode = item.authCode;
     const data = {
       project_name: document.title.replace(' - Google Sheets', ''),
-      language: 'Google Sheets',
+      language: 'Spreadheet',
       editor_name: 'Google Sheets',
       hostname: 'browser',
     };
