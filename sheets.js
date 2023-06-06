@@ -32,8 +32,8 @@ function handleFirstAction() {
 
   //Send heartbeat every 30 seconds after first action
   setInterval(() => {
-    if (!document.hidden && editorText != document.getElementById('waffle-rich-text-editor').children[0].textContent) {
-      editorText = document.getElementById('waffle-rich-text-editor').children[0].textContent;
+    if (!document.hidden && editorText != document.getElementById('waffle-rich-text-editor').textContent) {
+      editorText = document.getElementById('waffle-rich-text-editor').textContent;
 
       heartbeat();
     }
