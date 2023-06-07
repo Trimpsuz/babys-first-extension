@@ -61,5 +61,24 @@ browser.storage.local.get('extensionStatus').then((item) => {
   if (Object.entries(item).length === 0 || item.extensionStatus) {
     //Send heartbeat on first action
     document.addEventListener('click', handleFirstAction);
+
+    //Flush when closing window
+    window.onbeforeunload = () => {
+      browser.storage.local.get('authCode').then((item) => {
+        const authCode = item.authCode;
+        fetch('https://api.testaustime.fi/activity/flush', {
+          method: 'POST',
+          headers: {
+            Authorization: `Bearer ${authCode}`,
+          },
+        })
+          .then(() => {
+            console.log('Flushed');
+          })
+          .catch((error) => {
+            console.error(error);
+          });
+      });
+    };
   }
 });
