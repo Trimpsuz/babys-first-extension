@@ -1,4 +1,5 @@
 let editorChanged = false;
+let hasMouseMoved = false;
 
 function heartbeat() {
   browser.storage.local.get('authCode').then((item) => {
@@ -39,6 +40,11 @@ observer.observe(document.querySelector('.CodeMirror-code'), { childList: true, 
 function handleFirstAction() {
   document.removeEventListener('click', handleFirstAction);
   heartbeat();
+
+  //Check if mouse moves
+  document.addEventListener('mousemove', () => {
+    hasMouseMoved = true;
+  });
 }
 
 //Check if extension is enabled
