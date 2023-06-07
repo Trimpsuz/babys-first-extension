@@ -45,6 +45,15 @@ function handleFirstAction() {
   document.addEventListener('mousemove', () => {
     hasMouseMoved = true;
   });
+
+  //Send heartbeat every 30 seconds after first action
+  setInterval(() => {
+    if (!document.hidden && (editorChanged || hasMouseMoved)) {
+      hasMouseMoved = false;
+      editorChanged = false;
+      heartbeat();
+    }
+  }, 30_000);
 }
 
 //Check if extension is enabled
