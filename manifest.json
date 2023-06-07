@@ -27,12 +27,16 @@
       "js": ["sheets.js"]
     },
     {
-      "matches": ["*://scratch.mit.edu/projects/*/editor*"],
+      "matches": ["*://*.scratch.mit.edu/projects/*/editor*"],
       "js": ["scratch.js"]
     },
     {
-      "matches": ["*://replit.com/*/*"],
+      "matches": ["*://*.replit.com/*/*"],
       "js": ["replit.js"]
+    },
+    {
+      "matches": ["*://*.shadertoy.com/new*", "*://*.shadertoy.com/view*"],
+      "js": ["shadertoy.js"]
     }
   ]
 }
